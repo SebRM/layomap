@@ -347,3 +347,5 @@ foreach(lang CXX C)
 		message(STATUS "CMAKE_${lang}_FLAGS${i}: ${CMAKE_${lang}_FLAGS${i}}")
 	endforeach()
 endforeach()
+
+add_subdirectory("layomap")
