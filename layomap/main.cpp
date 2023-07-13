@@ -26,6 +26,11 @@ using namespace OpenOrienteering;
 // loops over each of the layout files in the provided layout directory to combine it with the source map, perform cutout 
 // and other actions, then exports the map as XML, OCAD and PDF files.
 int main(int argc, char **argv) {
+  // Define constants
+  const QString version = "0.1.0";
+  const QString borderSymbol = "900.0";
+  const QString frameSymbol = "900.1";
+
   // First set an environment variable to make it work in CLI only despite OO Mapper using QT for GUI stuff.
   putenv("QT_QPA_PLATFORM=offscreen"); 
 
@@ -33,7 +38,7 @@ int main(int argc, char **argv) {
   QApplication app(argc, argv);
   app.setApplicationName("layomap");
   app.setApplicationDisplayName("Layomap");
-  app.setApplicationVersion("0.1.0");
+  app.setApplicationVersion(version);
 
   // Define parser to parse the arguments.
   QCommandLineParser parser;
@@ -41,7 +46,7 @@ int main(int argc, char **argv) {
   parser.addHelpOption(); // Adds help option with -h or --help.
   parser.addVersionOption(); // Adds version option with -v or --version
   
-  // Definine the arguments when running the application.
+  // Defining the arguments when running the application.
   const QCommandLineOption sourceOption(QStringList() << "s" << "source",
                                         QCoreApplication::translate("main", "Path to source file in XML (.omap/.xmap) format. If not provided, the program will look for sourcemap files in this order:\n'sourcemap.xmap', 'sourcemap.omap'"),
                                         QCoreApplication::translate("main", "source"));
@@ -62,7 +67,7 @@ int main(int argc, char **argv) {
   // Process the actual command line arguments given by the user.
   parser.process(app);
   
-  // Store source, layout, output, and config paths in variables.
+  // Store source, layout and output in variables.
   QString source = parser.value(sourceOption);
   QString layouts = parser.value(layoutsOption);
   QString output = parser.value(outputOption);
@@ -162,7 +167,7 @@ int main(int argc, char **argv) {
     // For all objects in layout map, check if it is a special layout object and store it as such.
     layoutMap.applyOnAllObjects([&](Object* object) {
       // If it is a border object (900.0).
-      if (object->getSymbol()->getNumberAsString() == "900.0") {
+      if (object->getSymbol()->getNumberAsString() == borderSymbol) {
         if (borderObject != nullptr) {
           cerr << "ERROR: Layout map '" << outName.toStdString() << "' contains more than one border object (Object with symbol 900.0.0).";
           parser.showHelp(1);
@@ -171,7 +176,7 @@ int main(int argc, char **argv) {
       }
 
       // If it is a frame object (900.1).
-      if (object->getSymbol()->getNumberAsString() == "900.1") {
+      if (object->getSymbol()->getNumberAsString() == frameSymbol) {
         if (frameObject != nullptr) {
           cerr << "ERROR: Layout map '" << outName.toStdString() << "' contains more than one frame object (Object with symbol 900.1.0)";
           parser.showHelp(1);
