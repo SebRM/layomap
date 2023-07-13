@@ -6,18 +6,22 @@ The point of the project is to automate the progress of applying paper layouts (
 
 This will also make it possible to implement a sort of "continous integration" workflow, like with software, where the source map can be version controlled in GIT and every time someone commits a new version, the finished layouted files are automatically generated.
 
-This repo is a fork of the [OpenOrienteering Mapper](https://www.openorienteering.org/apps/mapper/) project, and uses its code to import/export maps in .xmap, .omap and .ocd format and to perform operations based on layout files.
+This repo is a fork of the [OpenOrienteering Mapper](https://www.openorienteering.org/apps/mapper/) project, and uses [its code](https://github.com/OpenOrienteering/mapper) to import/export maps in .xmap, .omap and .ocd format and to perform operations based on layout files.
 
 All of the code for the project is in the /layomap directory. The build.sh script can be used to build the program for linux. Also follow the instructions of Mapper's install guide in INSTALL.md.
 For now I have just tried to compile this on Ubuntu Linux (20.04.6 through WSL) but since Mapper is crossplatform it should be possible on Windows and MacOS too.
 
 ## Issues, improvements, comments & discussions
 
-All done here in GitHub (Issues and discussions), or contact the original author (SebRM) on email [sebrm@live.dk](mailto:sebrm@live.dk).
+All done here in GitHub ([Issues](https://github.com/SebRM/layomap/issues) and [discussions](https://github.com/SebRM/layomap/discussions)), or contact the original author (SebRM) on email [sebrm@live.dk](mailto:sebrm@live.dk).
+
+## Download
+
+Latest releases for Linux exist in [releases](https://github.com/SebRM/layomap/releases) on GitHub. It can also be compiled manually along with all of OO Mapper, following the instructions in INSTALL.md.
 
 ## Usage
 
-The program is compiled to an executable in `layomap/build/layomap/layomap` which can be run without any arguments:
+The program is compiled to an executable (see above) which can be run without any arguments:
 
 `layomap`
 
@@ -54,7 +58,7 @@ A layout map contains (for now) 2 special objects, defined by their symbol numbe
 
 - `900.1` is considered a **frame object**. There shall be at most 1 object with symbol 900.1! It must be a line object, and it must end where it started.
 
-  Every object in both the source map and the layout mapvthat are outside the frame object will be cutout and the frame stays.
+  Every object in both the source map and the layout map that are outside the frame object will be cutout and the frame stays.
 
 ## The future
 
