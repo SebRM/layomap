@@ -17,7 +17,7 @@ All done here in GitHub ([Issues](https://github.com/SebRM/layomap/issues) and [
 
 ## Download
 
-Latest releases for Linux exist in [releases](https://github.com/SebRM/layomap/releases) on GitHub. It can also be compiled manually along with all of OO Mapper, following the instructions in INSTALL.md.
+The program can be manually compiled along with all of OO Mapper by following the instructions in INSTALL.md. The latest version is available in a [Docker image](https://github.com/SebRM/layomap/pkgs/container/layomap-image).
 
 ## Usage
 
@@ -63,6 +63,8 @@ A layout map contains (for now) 2 special objects, defined by their symbol numbe
 ## The future
 
 Currently there is one critical bug which needs to be fixed. When the map is exported to .ocd format (any version), for some reason the text changes alignment, position and line height. I have looked into the Mapper sourcecode (where it works in 'Save as...') but cannot find out what to do differently.
+
+Also, it takes ages to compile because I am no good at cmake and compiler stuff so it compiles all of OO Mapper every time. This is possibly optimizable.
 
 Regarding new features, I would like to make something so the date on the map is automatically updated, and perhaps make special fields so one can change definitions of special symbols, cartographer credits and such without doing it in several layout files. I'd also perhaps like PDF and other exports, and more customization of the program with a config file. But all that is far into the horizon. Let me know if you have any ideas.
 
